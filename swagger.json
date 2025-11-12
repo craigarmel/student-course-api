@@ -1,9 +1,9 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "StudentCourseAPI",
+    "title": "CourseAPI",
     "version": "1.0.0",
-    "description": "API pédagogique pour gérer étudiants et cours (no DB)"
+    "description": "API pédagogique pour gérer étudiants et cours"
   },
   "tags": [
     { "name": "Students", "description": "Gestion des étudiants" },
@@ -15,9 +15,8 @@
         "tags": ["Students"],
         "summary": "Liste des étudiants",
         "responses": {
-          "200": { "description": "OK", "content": { "application/json": { "schema": { "type": "object", "properties": { "students": { "type": "array", "items": { "type": "object" } } } } } }
-        }
-      },
+          "200": { "description": "OK"}
+      }},
       "post": {
         "tags": ["Students"],
         "summary": "Créer un étudiant",
@@ -74,7 +73,7 @@
         "tags": ["Courses"],
         "summary": "Liste des cours",
         "responses": {
-          "200": { "description": "OK", "content": { "application/json": { "schema": { "type": "object", "properties": { "courses": { "type": "array", "items": { "type": "object" } } } } } }
+          "200": { "description": "OK" }
         }
       },
       "post": {
@@ -86,8 +85,8 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "properties": { "name": { "type": "string" }, "description": { "type": "string" } },
-                "required": ["name", "description"]
+                "properties": { "title": { "type": "string" }, "teacher": { "type": "string" } },
+                "required": ["title", "teacher"]
               }
             }
           }
@@ -131,4 +130,3 @@
     }
   }
 }
-  }}
