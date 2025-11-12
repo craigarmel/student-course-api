@@ -14,7 +14,11 @@ exports.getStudent=(a,b)=>{
 exports.createStudent = (req, res) => {
   const { name, email } = req.body;
   if (!name || !email) return res.status(400).json({ error: 'name and email required' });
-  const result = s.create('students', { name, email });if (result.error) return res.status(400).json({ error: result.error });return res.status(201).json(result);};
+  const result = s.create('students', { name, email });
+  if (result.error) 
+    return res.status(400).json({ error: result.error });
+  return res.status(201).json(result);};
+  
 exports.deleteStudent = (req, res) => {
   const result = s.remove('students', req.params.id);
   if (result === false) return res.status(404).json({ error: 'Student not found' });

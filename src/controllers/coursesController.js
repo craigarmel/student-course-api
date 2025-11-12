@@ -93,9 +93,9 @@ exports.createCourse = (req, res) => {
  *         description: Non trouvé
  */
 exports.deleteCourse = (req, res) => {
-  const result = storage.remove('courses', req.params.id);
-  if (result === false) return res.status(404).json({ error: 'Course not found' });
-  if (result.error) return res.status(400).json({ error: result.error });
+  const course = storage.get('courses', req.params.id);
+  if (!course) return res.status(404).json({ error: 'Course not found' });
+  storage.remove('courses', req.params.id);
   return res.status(204).send();
 };
 

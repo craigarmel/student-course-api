@@ -23,11 +23,13 @@ function create(collection, payload) {
     }
   }
   if (collection === 'courses') {
-    if (data.courses.find(c => c.title === payload.title)) {
-      return { error: 'Course title must be unique' };
+    const sameTitleCount = data.courses.filter(c => c.title === payload.title).length;
+    if (sameTitleCount >= 2) {
+      return { error: 'Course title cannot be used more than twice' };
     }
   }
   const id = collection === 'students' ? studentId++ : courseId++;
+  // eslint-disable-next-line node/no-unsupported-features/es-syntax
   const item = { id, ...payload };
   data[collection].push(item);
   return item;
@@ -62,8 +64,7 @@ function enroll(studentId, courseId) {
     return { error: 'Student already enrolled in this course' };
   }
   // Vérifie que le cours n’a pas plus de 3 étudiants
-  const enrolledCount = data.enrollments.filter(e => e.courseId === Number(courseId)).length;
-  if (enrolledCount >= 3) return { error: 'Course is full' };
+  // const enrolledCount = data.enrollments.filter(e => e.courseId === Number(courseId)).length;
   data.enrollments.push({ studentId: Number(studentId), courseId: Number(courseId) });
   return { success: true };
 }
@@ -92,7 +93,7 @@ function reset() {
 }
 
 function seed() {
-  // Ajoute quelques étudiants
+  // Ajoute quelques étudiantss
   create('students', { name: 'Alice', email: 'alice@example.com' });
   create('students', { name: 'Bob', email: 'bob@example.com' });
   create('students', { name: 'Charlie', email: 'charlie@example.com' });
