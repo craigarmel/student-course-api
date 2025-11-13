@@ -24,7 +24,7 @@ router.post('/:courseId/students/:studentId', (req, res) => {
 router.delete('/:courseId/students/:studentId', (req, res) => {
   const result = require('../services/storage').unenroll(req.params.studentId, req.params.courseId);
   if (result.error) return res.status(404).json({ error: result.error });
-  return res.status(204).send();
+  return res.status(204).send(result);
 });
 
 router.put('/:id', updateCourse);
