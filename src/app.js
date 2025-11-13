@@ -18,7 +18,7 @@ app.use('/students', studentsRouter);
 
 app.use('/courses', coursesRouter);
 
-app.use((req, res) => {
+app.use((res) => {
   res.status(404).json({ error: 'Not Found' });
 });
 
