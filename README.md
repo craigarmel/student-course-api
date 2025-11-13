@@ -40,15 +40,47 @@ L’objectif est d’améliorer la qualité du code et la couverture de tests à
 
 ## Démarrage rapide
 
+## Installation et démarrage
+
+### Cloner le projet
+```sh
+git clone https://github.com/your-username/student-course-api.git
+cd student-course-api
+```
+
+### Prérequis
+- Node.js (v16+)
+- npm ou yarn
+
+### Installation
 ```sh
 npm install
+```
+
+### Développement
+```sh
 npm run dev
 ```
 
-- Accès à la documentation Swagger : `/api-docs`
-- Lancer les tests : `npm test`
-- Linter : `npm run lint`
-- Formatage : `npm run format`
+### Tests et qualité
+```sh
+npm test              # Lancer les tests
+npm run lint          # Vérifier le code avec ESLint
+npm run format        # Formater le code avec Prettier
+npm run lint:fix      # Corriger automatiquement les erreurs de linting
+```
+
+### Documentation
+- API Swagger : `http://localhost:3000/api-docs`
+- Architecture : voir `docs/`
+
+### Workflow complet
+```sh
+npm install           # Installer les dépendances
+npm run lint:fix      # Formater et corriger le code
+npm test              # Lancer les tests
+npm run dev           # Démarrer le serveur en développement
+```
 
 ---
 
