@@ -20,8 +20,5 @@ jobs:
           node-version: '18'
       - name: Install dependencies
         run: npm install
-<<<<<<< Updated upstream
-=======
       - name: Run tests
         run: npm test
->>>>>>> Stashed changes
