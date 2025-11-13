@@ -1,3 +1,4 @@
+// eslint-disable-next-line node/no-unpublished-require
 const request = require('supertest');
 const app = require('../../src/app');
 
@@ -14,6 +15,12 @@ describe('Student-Course API integration', () => {
     expect(res.body.students[0].name).toBe('Alice');
   });
 
+  test('GET /students/:id should return a specific student', async () => {
+    const res = await request(app).get('/students/1');
+    expect(res.statusCode).toBe(200);
+    expect(res.body.student.id).toBe(1);
+  });
+
   test('POST /students should create a new student', async () => {
     const res = await request(app)
       .post('/students')
@@ -26,7 +33,20 @@ describe('Student-Course API integration', () => {
     const res = await request(app)
       .post('/students')
       .send({ name: 'Eve', email: 'alice@example.com' });
-    expect(res.statusCode).toBe(201);
+    expect(res.statusCode).toBe(400);
+  });
+
+  test('PUT /students/:id should update a student', async () => {
+    const res = await request(app)
+      .put('/students/1')
+      .send({ name: 'Alice Updated', email: 'alice.updated@example.com' });
+    expect(res.statusCode).toBe(200);
+    expect(res.body.name).toBe('Alice Updated');
+  });
+
+  test('DELETE /students/:id should delete a student', async () => {
+    const res = await request(app).delete('/students/1');
+    expect(res.statusCode).toBe(204);
   });
 
   test('DELETE /courses/:id should delete a course even if students are enrolled', async () => {
